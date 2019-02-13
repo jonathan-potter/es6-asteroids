@@ -1,0 +1,16 @@
+{
+  "name": "asteroids",
+  "version": "1.0.0",
+  "description": "asteroids game in javascript",
+  "main": "javascript/index.js",
+  "scripts": {
+    "start": "python -m SimpleHTTPServer 1111"
+  },
+  "keywords": [
+    "game",
+    "javascript",
+    "asteroids"
+  ],
+  "author": "Jonathan Potter",
+  "license": "MIT"
+}
