@@ -1,13 +1,17 @@
 import MovingObject from '/javascript/MovingObject.js'
 import Vec2 from '/javascript/Vec2.js'
 import Canvas from '/javascript/Canvas.js'
-import mapValues from '/node_modules/lodash-es/mapValues.js'
 
-console.log('mapValues', mapValues)
-
+const canvasProperties = Canvas.getProperties()
 const MAX_ASTEROIDS = 20;
 
 const asteroids = []
+const ship = new MovingObject({
+    position: new Vec2({
+        x: canvasProperties.width / 2,
+        y: canvasProperties.height / 2
+    })
+});
 
 requestAnimationFrame(function runLoop () {
     while (asteroids.length < MAX_ASTEROIDS) {
@@ -20,7 +24,15 @@ requestAnimationFrame(function runLoop () {
         Canvas.drawCircle(asteroid)
     })
 
+    ship.move()
+    Canvas.drawCircle(ship)
+
     requestAnimationFrame(runLoop)
+})
+
+const left = new Vec2({ x: -1, y: 0 })
+key('a', () => {
+    ship.position.add(left)
 })
 
 window.Vec2 = Vec2

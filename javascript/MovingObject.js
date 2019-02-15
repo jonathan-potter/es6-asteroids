@@ -5,9 +5,10 @@ export default class MovingObject {
     radius = 20
     color = 'white'
 
-    constructor({ position, velocity }) {
-        this.position = position
-        this.velocity = velocity
+    constructor({ position, velocity, acceleration } = {}) {
+        this.position = position || new Vec2()
+        this.velocity = velocity || new Vec2()
+        this.acceleration = acceleration || new Vec2()
     }
 
     get x() {
@@ -20,6 +21,7 @@ export default class MovingObject {
 
     move() {
         this.position.add(this.velocity)
+        this.velocity.add(this.acceleration)
     }
 
     static createRandom() {
