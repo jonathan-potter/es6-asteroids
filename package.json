@@ -12,5 +12,8 @@
     "asteroids"
   ],
   "author": "Jonathan Potter",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "lodash-es": "^4.17.11"
+  }
 }

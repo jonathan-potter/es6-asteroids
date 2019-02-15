@@ -1,6 +1,9 @@
 import MovingObject from '/javascript/MovingObject.js'
 import Vec2 from '/javascript/Vec2.js'
 import Canvas from '/javascript/Canvas.js'
+import mapValues from '/node_modules/lodash-es/mapValues.js'
+
+console.log('mapValues', mapValues)
 
 const MAX_ASTEROIDS = 20;
 
