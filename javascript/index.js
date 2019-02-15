@@ -1,12 +1,13 @@
-import MovingObject from '/javascript/MovingObject.js'
-import Vec2 from '/javascript/Vec2.js'
 import Canvas from '/javascript/Canvas.js'
+import MovingObject from '/javascript/MovingObject.js'
+import Ship from '/javascript/Ship.js'
+import Vec2 from '/javascript/Vec2.js'
 
 const canvasProperties = Canvas.getProperties()
 const MAX_ASTEROIDS = 20;
 
 const asteroids = []
-const ship = new MovingObject({
+const ship = new Ship({
     position: new Vec2({
         x: canvasProperties.width / 2,
         y: canvasProperties.height / 2

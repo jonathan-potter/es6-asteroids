@@ -5,10 +5,9 @@ export default class MovingObject {
     radius = 20
     color = 'white'
 
-    constructor({ position, velocity, acceleration } = {}) {
+    constructor({ position, velocity } = {}) {
         this.position = position || new Vec2()
         this.velocity = velocity || new Vec2()
-        this.acceleration = acceleration || new Vec2()
     }
 
     get x() {
@@ -17,6 +16,10 @@ export default class MovingObject {
 
     get y() {
         return this.position.y;
+    }
+
+    get acceleration() {
+        return new Vec2()
     }
 
     move() {
