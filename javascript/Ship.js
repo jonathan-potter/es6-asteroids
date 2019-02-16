@@ -3,10 +3,11 @@ import key from '/javascript/Keymaster.js'
 import MovingObject from '/javascript/MovingObject.js'
 import Vec2 from '/javascript/Vec2.js'
 
-const { cos, PI, sin } = Math
+const { cos, min, PI, sin } = Math
 
+const MAX_SPEED = 10
 const ACCELERATION = .1
-const BULLET_SPEED = 5
+const BULLET_SPEED = 11
 
 export default class Ship extends MovingObject {
     direction = -PI/2
@@ -37,6 +38,12 @@ export default class Ship extends MovingObject {
         }))
     }
 
+    limitSpeed() {
+        if (this.velocity.magnitude < MAX_SPEED) { return }
+
+        this.velocity = this.velocity.normalize().scale(MAX_SPEED)
+    }
+
     move() {
         if (key.isPressed('left')) {
             this.direction -= 0.1
@@ -45,6 +52,7 @@ export default class Ship extends MovingObject {
             this.direction += 0.1
         }
         MovingObject.prototype.move.call(this)
+        this.limitSpeed()
         this.wrap()
     }
 

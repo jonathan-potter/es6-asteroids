@@ -1,7 +1,7 @@
 import Canvas from '/javascript/Canvas.js'
 import sample from '/node_modules/lodash-es/sample.js'
 
-const { cos, PI, random, sin } = Math
+const { atan2, cos, hypot, PI, random, sin } = Math
 
 export default class Vec2 {
     constructor({ x = 0, y = 0 } = {}) {
@@ -9,10 +9,34 @@ export default class Vec2 {
         this.y = y
     }
 
+    get argument() {
+        return atan2(this.y, this.x)
+    }
+
     add(otherVector) {
         return new Vec2({
             x: this.x + otherVector.x,
             y: this.y + otherVector.y,
+        })
+    }
+
+    get magnitude() {
+        return hypot(this.x, this.y)
+    }
+
+    normalize() {
+        const { argument } = this
+
+        return new Vec2({
+            x: cos(argument),
+            y: sin(argument),
+        })
+    }
+
+    scale(scale) {
+        return new Vec2({
+            x: this.x * scale,
+            y: this.y * scale,
         })
     }
 
