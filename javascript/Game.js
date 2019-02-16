@@ -7,7 +7,7 @@ import Ship from '/javascript/Ship.js'
 import Vec2 from '/javascript/Vec2.js'
 
 const canvasBB = Canvas.getBoundingBox()
-const MAX_ASTEROIDS = 20;
+const MIN_ASTEROIDS = 5;
 
 export default class Game {
     asteroids = []
@@ -20,19 +20,22 @@ export default class Game {
     })
 
     addAsteroids() {
-        while (this.asteroids.length < MAX_ASTEROIDS) {
+        while (this.asteroids.length < MIN_ASTEROIDS) {
             this.asteroids.push(Asteroid.createRandom())
         }
     }
 
     bindHandlers() {
         key('space', () => {
-            console.log('shoot')
             this.bullets.push(this.ship.shoot())
         })
     }
 
     checkCollisions() {
+        if (this.asteroids.some(asteroid => asteroid.isCollidedWith(this.ship))) {
+            this.stop()
+        }
+
         this.bullets.forEach(bullet => {
             this.asteroids.forEach(asteroid => {
                 if (!bullet.isCollidedWith(asteroid)) { return }
@@ -41,10 +44,6 @@ export default class Game {
                 asteroid.hit = true
             })
         })
-
-        if (this.asteroids.some(asteroid => asteroid.isCollidedWith(this.ship))) {
-            this.stop()
-        }
     }
 
     destroyHit() {

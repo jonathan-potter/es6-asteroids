@@ -5,9 +5,9 @@ import Vec2, { NullVector } from '/javascript/Vec2.js'
 
 const { cos, min, PI, sin } = Math
 
-const MAX_SPEED = 10
+const MAX_SPEED = 6
 const ACCELERATION = .1
-const BULLET_SPEED = 11
+const BULLET_SPEED = 8
 
 export default class Ship extends MovingObject {
     direction = -PI/2
