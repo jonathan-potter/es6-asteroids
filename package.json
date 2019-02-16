@@ -14,6 +14,7 @@
   "author": "Jonathan Potter",
   "license": "MIT",
   "dependencies": {
+    "keymaster": "^1.6.2",
     "lodash-es": "^4.17.11"
   }
 }
