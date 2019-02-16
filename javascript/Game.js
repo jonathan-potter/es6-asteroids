@@ -30,6 +30,22 @@ export default class Game {
         })
     }
 
+    checkCollisions() {
+        this.bullets.forEach(bullet => {
+            this.asteroids.forEach(asteroid => {
+                if (!bullet.isCollidedWith(asteroid)) { return }
+
+                bullet.hit = true
+                asteroid.hit = true
+            })
+        })
+    }
+
+    destroyHit() {
+        this.bullets = this.bullets.filter(bullet => !bullet.hit)
+        this.asteroids = this.asteroids.filter(asteroid => !asteroid.hit)
+    }
+
     removeOutOfBounds() {
         this.asteroids = this.asteroids.filter(asteroid => {
             return canvasBB.intersects(asteroid.boundingBox)
@@ -63,6 +79,8 @@ export default class Game {
         this.addAsteroids()
         this.move()
         this.removeOutOfBounds()
+        this.checkCollisions()
+        this.destroyHit()
         this.draw()
     }
 }

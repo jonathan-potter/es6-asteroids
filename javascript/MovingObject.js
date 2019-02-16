@@ -42,6 +42,12 @@ export default class MovingObject {
         Canvas.drawCircle(this)
     }
 
+    isCollidedWith(otherObject) {
+        const distance = this.position.subtract(otherObject.position).magnitude
+
+        return distance < this.radius + otherObject.radius
+    }
+
     move() {
         this.position = this.position.add(this.velocity)
         this.velocity = this.velocity.add(this.acceleration)
