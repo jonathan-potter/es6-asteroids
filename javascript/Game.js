@@ -29,7 +29,6 @@ export default class Game {
 
     move() {
         this.asteroids.forEach(asteroid => asteroid.move())
-
         this.ship.move()
     }
 

@@ -26,7 +26,9 @@ export default class Ship extends MovingObject {
     }
 
     draw() {
+        // body
         Canvas.drawCircle(this)
+        // nose
         Canvas.drawCircle(Object.assign({}, this, {
             x: this.x + this.radius * cos(this.direction),
             y: this.y + this.radius * sin(this.direction),
@@ -42,5 +44,28 @@ export default class Ship extends MovingObject {
             this.direction += 0.1
         }
         MovingObject.prototype.move.call(this)
+        this.wrap()
+    }
+
+    wrap() {
+        const canvasBB = Canvas.getBoundingBox()
+
+        if (this.boundingBox.isLeftOf(canvasBB)) {
+            this.position = this.position.add(new Vec2({
+                x: canvasBB.width + 2 * (this.radius + this.lineWidth) + 2
+            }))
+        } else if (this.boundingBox.isRightOf(canvasBB)) {
+            this.position = this.position.subtract(new Vec2({
+                x: canvasBB.width + 2 * (this.radius + this.lineWidth) + 2
+            }))
+        } else if (this.boundingBox.isBelow(canvasBB)) {
+            this.position = this.position.add(new Vec2({
+                y: canvasBB.height + 2 * (this.radius + this.lineWidth) + 2
+            }))
+        } else if (this.boundingBox.isAbove(canvasBB)) {
+            this.position = this.position.subtract(new Vec2({
+                y: canvasBB.height + 2 * (this.radius + this.lineWidth) + 2
+            }))
+        }
     }
 }

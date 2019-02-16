@@ -1,3 +1,4 @@
+import BoundingBox from '/javascript/BoundingBox.js'
 import Canvas from '/javascript/Canvas.js'
 import Vec2 from '/javascript/Vec2.js'
 
@@ -31,10 +32,10 @@ export default class MovingObject {
             y: hypotonuse,
         })
 
-        return {
+        return new BoundingBox({
             min: this.position.subtract(half),
             max: this.position.add(half),
-        }
+        })
     }
 
     draw() {
