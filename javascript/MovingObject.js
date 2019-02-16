@@ -3,7 +3,7 @@ import Canvas from '/javascript/Canvas.js'
 import Vec2, { NullVector } from '/javascript/Vec2.js'
 
 const { hypot } = Math
-const DEFAULT_RADIUS = 20
+export const DEFAULT_RADIUS = 20
 
 export default class MovingObject {
     constructor({ position = NullVector, velocity = NullVector, color = 'white', radius = 20 } = {}) {
@@ -38,6 +38,10 @@ export default class MovingObject {
         })
     }
 
+    destroy() {
+        return
+    }
+
     draw() {
         Canvas.drawCircle(this)
     }
@@ -51,17 +55,5 @@ export default class MovingObject {
     move() {
         this.position = this.position.add(this.velocity)
         this.velocity = this.velocity.add(this.acceleration)
-    }
-
-    static createRandom() {
-        const canvasBB = Canvas.getBoundingBox()
-
-        return new MovingObject({
-            position: Vec2.createRandomJustOutsideBoundingBox({
-                boundingBox: canvasBB,
-                distance: DEFAULT_RADIUS,
-            }),
-            velocity: Vec2.createRandomInCircle(5),
-        })
     }
 }

@@ -1,6 +1,7 @@
 import Canvas from '/javascript/Canvas.js'
+import flatten from '/node_modules/lodash-es/flatten.js'
 import key from '/javascript/Keymaster.js'
-import MovingObject from '/javascript/MovingObject.js'
+import Asteroid from '/javascript/Asteroid.js'
 import Ship from '/javascript/Ship.js'
 import Vec2 from '/javascript/Vec2.js'
 
@@ -19,7 +20,7 @@ export default class Game {
 
     addAsteroids() {
         while (this.asteroids.length < MAX_ASTEROIDS) {
-            this.asteroids.push(MovingObject.createRandom())
+            this.asteroids.push(Asteroid.createRandom())
         }
     }
 
@@ -42,8 +43,12 @@ export default class Game {
     }
 
     destroyHit() {
+        const asteroids = this.asteroids.filter(asteroid => !asteroid.hit)
+        const destroyedAsteroids = this.asteroids.filter(asteroid => asteroid.hit)
+
+        this.asteroids = flatten(asteroids.concat(destroyedAsteroids.map(asteroid => asteroid.destroy())))
+
         this.bullets = this.bullets.filter(bullet => !bullet.hit)
-        this.asteroids = this.asteroids.filter(asteroid => !asteroid.hit)
     }
 
     removeOutOfBounds() {

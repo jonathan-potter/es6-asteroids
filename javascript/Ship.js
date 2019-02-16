@@ -15,8 +15,6 @@ export default class Ship extends MovingObject {
     lineWidth = 3
 
     get acceleration() {
-        const { direction } = this
-
         if (key.isPressed('up')) {
             return new Vec2({
                 x: ACCELERATION * cos(this.direction),
