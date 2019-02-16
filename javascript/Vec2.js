@@ -13,15 +13,15 @@ export default class Vec2 {
         return atan2(this.y, this.x)
     }
 
+    get magnitude() {
+        return hypot(this.x, this.y)
+    }
+
     add(otherVector) {
         return new Vec2({
             x: this.x + otherVector.x,
             y: this.y + otherVector.y,
         })
-    }
-
-    get magnitude() {
-        return hypot(this.x, this.y)
     }
 
     normalize() {
@@ -81,3 +81,5 @@ export default class Vec2 {
         return position
     }
 }
+
+export const NullVector = new Vec2()

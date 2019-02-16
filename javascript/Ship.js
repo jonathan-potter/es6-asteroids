@@ -1,7 +1,7 @@
 import Canvas from '/javascript/Canvas.js'
 import key from '/javascript/Keymaster.js'
 import MovingObject from '/javascript/MovingObject.js'
-import Vec2 from '/javascript/Vec2.js'
+import Vec2, { NullVector } from '/javascript/Vec2.js'
 
 const { cos, min, PI, sin } = Math
 
@@ -23,7 +23,7 @@ export default class Ship extends MovingObject {
                 y: ACCELERATION * sin(this.direction),
             })
         } else {
-            return new Vec2()
+            return NullVector
         }
     }
 
