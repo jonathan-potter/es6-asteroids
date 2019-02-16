@@ -6,6 +6,7 @@ import Vec2 from '/javascript/Vec2.js'
 const { cos, PI, sin } = Math
 
 const ACCELERATION = .1
+const BULLET_SPEED = 5
 
 export default class Ship extends MovingObject {
     direction = -PI/2
@@ -17,8 +18,8 @@ export default class Ship extends MovingObject {
 
         if (key.isPressed('up')) {
             return new Vec2({
-                x: ACCELERATION * cos(direction),
-                y: ACCELERATION * sin(direction),
+                x: ACCELERATION * cos(this.direction),
+                y: ACCELERATION * sin(this.direction),
             })
         } else {
             return new Vec2()
@@ -45,6 +46,24 @@ export default class Ship extends MovingObject {
         }
         MovingObject.prototype.move.call(this)
         this.wrap()
+    }
+
+    shoot() {
+        const position = new Vec2({
+            x: this.x + this.radius * cos(this.direction),
+            y: this.y + this.radius * sin(this.direction),
+        })
+        const velocity = new Vec2({
+            x: BULLET_SPEED * cos(this.direction),
+            y: BULLET_SPEED * sin(this.direction),
+        })
+
+        return new MovingObject({
+            position,
+            velocity,
+            color: 'red',
+            radius: 4,
+        })
     }
 
     wrap() {

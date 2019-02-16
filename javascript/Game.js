@@ -1,4 +1,5 @@
 import Canvas from '/javascript/Canvas.js'
+import key from '/javascript/Keymaster.js'
 import MovingObject from '/javascript/MovingObject.js'
 import Ship from '/javascript/Ship.js'
 import Vec2 from '/javascript/Vec2.js'
@@ -8,6 +9,7 @@ const MAX_ASTEROIDS = 20;
 
 export default class Game {
     asteroids = []
+    bullets = []
     ship = new Ship({
         position: new Vec2({
             x: canvasBB.width / 2,
@@ -21,6 +23,13 @@ export default class Game {
         }
     }
 
+    bindHandlers() {
+        key('space', () => {
+            console.log('shoot')
+            this.bullets.push(this.ship.shoot())
+        })
+    }
+
     removeOutOfBounds() {
         this.asteroids = this.asteroids.filter(asteroid => {
             return canvasBB.intersects(asteroid.boundingBox)
@@ -29,13 +38,25 @@ export default class Game {
 
     move() {
         this.asteroids.forEach(asteroid => asteroid.move())
+        this.bullets.forEach(bullets => bullets.move())
         this.ship.move()
     }
 
     draw() {
         Canvas.clear()
         this.asteroids.forEach(asteroid => asteroid.draw())
+        this.bullets.forEach(bullet => bullet.draw())
         this.ship.draw()
+    }
+
+    start() {
+        var self = this
+        this.bindHandlers()
+        requestAnimationFrame(function runLoop() {
+            self.tick()
+
+            requestAnimationFrame(runLoop)
+        })
     }
 
     tick() {

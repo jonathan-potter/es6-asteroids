@@ -6,8 +6,4 @@ import Game from '/javascript/Game.js'
 
 const game = new Game()
 
-requestAnimationFrame(function runLoop() {
-    game.tick()
-
-    requestAnimationFrame(runLoop)
-})
+game.start()
