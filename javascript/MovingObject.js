@@ -2,9 +2,10 @@ import Canvas from '/javascript/Canvas.js'
 import Vec2 from '/javascript/Vec2.js'
 
 const { hypot } = Math
+const DEFAULT_RADIUS = 20
 
 export default class MovingObject {
-    radius = 20
+    radius = DEFAULT_RADIUS
 
     constructor({ position, velocity } = {}) {
         this.position = position || new Vec2()
@@ -45,7 +46,10 @@ export default class MovingObject {
         const canvasBB = Canvas.getBoundingBox()
 
         return new MovingObject({
-            position: Vec2.createRandomJustOutsideBoundingBox(canvasBB),
+            position: Vec2.createRandomJustOutsideBoundingBox({
+                boundingBox: canvasBB,
+                distance: DEFAULT_RADIUS,
+            }),
             velocity: Vec2.createRandomInCircle(5),
         })
     }

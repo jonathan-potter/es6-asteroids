@@ -40,7 +40,7 @@ export default class Vec2 {
         })
     }
 
-    static createRandomJustOutsideBoundingBox(boundingBox) {
+    static createRandomJustOutsideBoundingBox({ boundingBox, distance = 0} ) {
         const canvasBB = Canvas.getBoundingBox()
 
         const position = Vec2.createRandomInBoundingBox(boundingBox)
@@ -48,7 +48,11 @@ export default class Vec2 {
         const edge = sample(['x', 'y'])
         const minMax = sample(['min', 'max'])
 
-        position[edge] = canvasBB[minMax][edge]
+        if (minMax === 'min') {
+            position[edge] = canvasBB[minMax][edge] - distance
+        } else {
+            position[edge] = canvasBB[minMax][edge] + distance
+        }
 
         return position
     }
