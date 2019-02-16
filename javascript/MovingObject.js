@@ -6,11 +6,13 @@ const { hypot } = Math
 export const DEFAULT_RADIUS = 20
 
 export default class MovingObject {
-    constructor({ position = NullVector, velocity = NullVector, color = 'white', radius = 20 } = {}) {
+    constructor({ position = NullVector, velocity = NullVector, color = 'white', radius = 20, generation = 1 } = {}) {
         this.position = position
         this.velocity = velocity
         this.color = color
         this.radius = radius
+        this.generation = generation,
+        this.hit = false
     }
 
     get x() {

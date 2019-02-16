@@ -1,5 +1,6 @@
 import Canvas from '/javascript/Canvas.js'
 import flatten from '/node_modules/lodash-es/flatten.js'
+import identity from '/node_modules/lodash-es/identity.js'
 import key from '/javascript/Keymaster.js'
 import Asteroid from '/javascript/Asteroid.js'
 import Ship from '/javascript/Ship.js'
@@ -40,13 +41,17 @@ export default class Game {
                 asteroid.hit = true
             })
         })
+
+        if (this.asteroids.some(asteroid => asteroid.isCollidedWith(this.ship))) {
+            this.stop()
+        }
     }
 
     destroyHit() {
         const asteroids = this.asteroids.filter(asteroid => !asteroid.hit)
         const destroyedAsteroids = this.asteroids.filter(asteroid => asteroid.hit)
 
-        this.asteroids = flatten(asteroids.concat(destroyedAsteroids.map(asteroid => asteroid.destroy())))
+        this.asteroids = flatten(asteroids.concat(destroyedAsteroids.map(asteroid => asteroid.destroy()))).filter(identity)
 
         this.bullets = this.bullets.filter(bullet => !bullet.hit)
     }
@@ -72,12 +77,19 @@ export default class Game {
 
     start() {
         var self = this
+        this.running = true
         this.bindHandlers()
         requestAnimationFrame(function runLoop() {
             self.tick()
 
-            requestAnimationFrame(runLoop)
+            if (self.running) {
+                requestAnimationFrame(runLoop)
+            }
         })
+    }
+
+    stop() {
+        this.running = false
     }
 
     tick() {
