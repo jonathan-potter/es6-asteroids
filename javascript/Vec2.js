@@ -41,7 +41,7 @@ export default class Vec2 {
     }
 
     static createRandomJustOutsideBoundingBox(boundingBox) {
-        const { boundingBox: canvasBB } = Canvas.getProperties()
+        const canvasBB = Canvas.getBoundingBox()
 
         const position = Vec2.createRandomInBoundingBox(boundingBox)
 

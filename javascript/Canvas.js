@@ -22,16 +22,12 @@ export default {
         context.stroke()
     },
 
-    getProperties() {
+    getBoundingBox() {
         const { width, height } = canvas
 
-        return {
-            width,
-            height,
-            boundingBox: new BoundingBox({
-                min: new Vec2(),
-                max: new Vec2({ x: width, y: height }),
-            })
-        }
+        return new BoundingBox({
+            min: new Vec2(),
+            max: new Vec2({ x: width, y: height }),
+        })
     }
 }

@@ -42,10 +42,10 @@ export default class MovingObject {
     }
 
     static createRandom() {
-        const canvasProperties = Canvas.getProperties()
+        const canvasBB = Canvas.getBoundingBox()
 
         return new MovingObject({
-            position: Vec2.createRandomJustOutsideBoundingBox(canvasProperties.boundingBox),
+            position: Vec2.createRandomJustOutsideBoundingBox(canvasBB),
             velocity: Vec2.createRandomInCircle(5),
         })
     }
