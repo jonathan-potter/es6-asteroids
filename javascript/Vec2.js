@@ -1,3 +1,6 @@
+import Canvas from '/javascript/Canvas.js'
+import sample from '/node_modules/lodash-es/sample.js'
+
 const { cos, PI, random, sin } = Math
 
 export default class Vec2 {
@@ -7,8 +10,17 @@ export default class Vec2 {
     }
 
     add(otherVector) {
-        this.x += otherVector.x
-        this.y += otherVector.y
+        return new Vec2({
+            x: this.x + otherVector.x,
+            y: this.y + otherVector.y,
+        })
+    }
+
+    subtract(otherVector) {
+        return new Vec2({
+            x: this.x - otherVector.x,
+            y: this.y - otherVector.y,
+        })
     }
 
     static createRandomInCircle(maxMagnitude = 1) {
@@ -21,10 +33,23 @@ export default class Vec2 {
         })
     }
 
-    static createRandomInRectangle({ width, height }) {
+    static createRandomInBoundingBox({ min, width, height }) {
         return new Vec2({
-            x: random() * width,
-            y: random() * height,
+            x: min.x + random() * width,
+            y: min.y + random() * height,
         })
+    }
+
+    static createRandomJustOutsideBoundingBox(boundingBox) {
+        const { boundingBox: canvasBB } = Canvas.getProperties()
+
+        const position = Vec2.createRandomInBoundingBox(boundingBox)
+
+        const edge = sample(['x', 'y'])
+        const minMax = sample(['min', 'max'])
+
+        position[edge] = canvasBB[minMax][edge]
+
+        return position
     }
 }

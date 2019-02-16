@@ -1,13 +1,13 @@
 import MovingObject from '/javascript/MovingObject.js'
 import Vec2 from '/javascript/Vec2.js'
-// import Interaction from 'javascript/Interaction.js'
-
 const { cos, sin } = Math
 
 const ACCELERATION = .1
 
 export default class Ship extends MovingObject {
     direction = 0
+    color = '#FFAAAA'
+    lineWidth = 3
 
     get acceleration() {
         const { direction } = this
