@@ -15,25 +15,38 @@ export default class Ship extends MovingObject {
     lineWidth = 3
 
     get acceleration() {
+        const { direction } = this
+
         if (key.isPressed('up')) {
-            return new Vec2({
-                x: ACCELERATION * cos(this.direction),
-                y: ACCELERATION * sin(this.direction),
+            return Vec2.fromMagnitudeAndDirection({
+                magnitude: ACCELERATION,
+                direction,
             })
         } else {
             return NullVector
         }
     }
 
+    get frontPosition() {
+        const { direction, radius } = this
+
+        const offset = Vec2.fromMagnitudeAndDirection({
+            magnitude: radius,
+            direction,
+        })
+
+        return this.position.add(offset)
+    }
+
     draw() {
         // body
         Canvas.drawCircle(this)
         // nose
-        Canvas.drawCircle(Object.assign({}, this, {
-            x: this.x + this.radius * cos(this.direction),
-            y: this.y + this.radius * sin(this.direction),
+        Canvas.drawCircle({
+            ...this,
+            ...this.frontPosition,
             radius: 3,
-        }))
+        })
     }
 
     limitSpeed() {
@@ -55,17 +68,15 @@ export default class Ship extends MovingObject {
     }
 
     shoot() {
-        const position = new Vec2({
-            x: this.x + this.radius * cos(this.direction),
-            y: this.y + this.radius * sin(this.direction),
-        })
-        const velocity = new Vec2({
-            x: BULLET_SPEED * cos(this.direction),
-            y: BULLET_SPEED * sin(this.direction),
+        const { direction, frontPosition } = this
+
+        const velocity = Vec2.fromMagnitudeAndDirection({
+            magnitude: BULLET_SPEED,
+            direction,
         })
 
         return new MovingObject({
-            position,
+            position: frontPosition,
             velocity,
             color: 'red',
             radius: 4,

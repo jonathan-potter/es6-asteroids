@@ -14,16 +14,17 @@ export default class Asteroid extends MovingObject {
         const offset = random()
         return [ 1/3, 2/3, 3/3 ].map(portion => {
             const direction = 2 * PI * (offset + portion)
+            const velocity = Vec2.fromMagnitudeAndDirection({
+                direction,
+            })
 
             return (
-                new Asteroid(Object.assign({}, this, {
-                    velocity: new Vec2({
-                        x: cos(direction),
-                        y: sin(direction),
-                    }),
+                new Asteroid({
+                    ...this,
+                    velocity,
                     radius: this.radius / 2,
                     generation: this.generation + 1
-                }))
+                })
             )
         })
     }

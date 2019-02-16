@@ -9,7 +9,7 @@ export default class Vec2 {
         this.y = y
     }
 
-    get argument() {
+    get direction() {
         return atan2(this.y, this.x)
     }
 
@@ -25,11 +25,10 @@ export default class Vec2 {
     }
 
     normalize() {
-        const { argument } = this
+        const { direction } = this
 
-        return new Vec2({
-            x: cos(argument),
-            y: sin(argument),
+        return Vec2.fromMagnitudeAndDirection({
+            direction,
         })
     }
 
@@ -48,12 +47,12 @@ export default class Vec2 {
     }
 
     static createRandomInCircle(maxMagnitude = 1) {
-        const angle     = random() * 2 * PI
+        const direction = random() * 2 * PI
         const magnitude = random() * maxMagnitude
 
-        return new Vec2({
-            x: magnitude * cos(angle),
-            y: magnitude * sin(angle),
+        return Vec2.fromMagnitudeAndDirection({
+            magnitude,
+            direction,
         })
     }
 
@@ -79,6 +78,13 @@ export default class Vec2 {
         }
 
         return position
+    }
+
+    static fromMagnitudeAndDirection({ magnitude = 1, direction = 0 }) {
+        return new Vec2({
+            x: magnitude * cos(direction),
+            y: magnitude * sin(direction),
+        })
     }
 }
 
