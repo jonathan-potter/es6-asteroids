@@ -28,17 +28,15 @@ export default class Game {
     }
 
     move() {
-        this.asteroids.forEach(asteroid => {
-            asteroid.move()
-        })
+        this.asteroids.forEach(asteroid => asteroid.move())
 
         this.ship.move()
     }
 
     draw() {
         Canvas.clear()
-        this.asteroids.forEach(Canvas.drawCircle)
-        Canvas.drawCircle(this.ship)
+        this.asteroids.forEach(asteroid => asteroid.draw())
+        this.ship.draw()
     }
 
     tick() {

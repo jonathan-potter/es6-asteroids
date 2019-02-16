@@ -37,6 +37,10 @@ export default class MovingObject {
         }
     }
 
+    draw() {
+        Canvas.drawCircle(this)
+    }
+
     move() {
         this.position = this.position.add(this.velocity)
         this.velocity = this.velocity.add(this.acceleration)
