@@ -3,6 +3,7 @@ import flatten from '/node_modules/lodash-es/flatten.js'
 import identity from '/node_modules/lodash-es/identity.js'
 import { key } from '/javascript/globals.js'
 import Asteroid from '/javascript/classes/Asteroid.js'
+import renderer from '/javascript/renderer.js'
 import Ship from '/javascript/classes/Ship.js'
 import Vec2 from '/javascript/utility/Vec2.js'
 
@@ -68,7 +69,7 @@ export default class Game {
     }
 
     draw() {
-        Canvas.clear()
+        renderer.clear()
         this.asteroids.forEach(asteroid => asteroid.draw())
         this.bullets.forEach(bullet => bullet.draw())
         this.ship.draw()

@@ -1,6 +1,7 @@
 import Canvas from '/javascript/utility/Canvas.js'
 import { key } from '/javascript/globals.js'
 import MovingObject from '/javascript/classes/MovingObject.js'
+import renderer from '/javascript/renderer.js'
 import Vec2, { NullVector } from '/javascript/utility/Vec2.js'
 
 const { cos, min, PI, sin } = Math
@@ -40,9 +41,9 @@ export default class Ship extends MovingObject {
 
     draw() {
         // body
-        Canvas.drawCircle(this)
+        renderer.drawCircle(this)
         // nose
-        Canvas.drawCircle({
+        renderer.drawCircle({
             ...this,
             ...this.frontPosition,
             radius: 3,
