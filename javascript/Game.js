@@ -1,7 +1,7 @@
 import Canvas from '/javascript/Canvas.js'
 import flatten from '/node_modules/lodash-es/flatten.js'
 import identity from '/node_modules/lodash-es/identity.js'
-import key from '/javascript/Keymaster.js'
+import { key } from '/javascript/globals.js'
 import Asteroid from '/javascript/Asteroid.js'
 import Ship from '/javascript/Ship.js'
 import Vec2 from '/javascript/Vec2.js'

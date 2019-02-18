@@ -1,5 +1,5 @@
 import Canvas from '/javascript/Canvas.js'
-import key from '/javascript/Keymaster.js'
+import { key } from '/javascript/globals.js'
 import MovingObject from '/javascript/MovingObject.js'
 import Vec2, { NullVector } from '/javascript/Vec2.js'
 
