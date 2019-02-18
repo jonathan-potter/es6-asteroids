@@ -1,5 +1,3 @@
-const { hypot } = Math
-
 const stage = document.getElementById('div-stage')
 
 export default {
@@ -8,8 +6,6 @@ export default {
     },
 
     drawCircle({ x, y, radius, color = 'white', lineWidth = 2 }) {
-        const diag = hypot(radius, radius)
-
         const div = document.createElement('div')
 
         div.classList.add('moving-object')

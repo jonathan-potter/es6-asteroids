@@ -4,7 +4,7 @@ import MovingObject from '/javascript/classes/MovingObject.js'
 import renderer from '/javascript/renderer.js'
 import Vec2, { NullVector } from '/javascript/utility/Vec2.js'
 
-const { cos, min, PI, sin } = Math
+const { PI } = Math
 
 const MAX_SPEED = 6
 const ACCELERATION = .1
