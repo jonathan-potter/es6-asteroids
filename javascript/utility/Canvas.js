@@ -1,7 +1,7 @@
 import BoundingBox from '/javascript/utility/BoundingBox.js'
 import Vec2, { NullVector } from '/javascript/utility/Vec2.js'
 
-const canvas = document.getElementById('canvas')
+const canvas = document.getElementById('canvas-stage')
 const context = canvas.getContext('2d')
 
 const { PI } = Math
