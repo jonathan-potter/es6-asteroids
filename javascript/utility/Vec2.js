@@ -1,4 +1,4 @@
-import Canvas from '/javascript/Canvas.js'
+import Canvas from '/javascript/utility/Canvas.js'
 import sample from '/node_modules/lodash-es/sample.js'
 
 const { atan2, cos, hypot, PI, random, sin } = Math

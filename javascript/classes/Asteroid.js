@@ -1,6 +1,6 @@
-import Canvas from '/javascript/Canvas.js'
-import MovingObject, { DEFAULT_RADIUS } from '/javascript/MovingObject.js'
-import Vec2 from '/javascript/Vec2.js'
+import Canvas from '/javascript/utility/Canvas.js'
+import MovingObject, { DEFAULT_RADIUS } from '/javascript/classes/MovingObject.js'
+import Vec2 from '/javascript/utility/Vec2.js'
 
 const { PI, random } = Math
 

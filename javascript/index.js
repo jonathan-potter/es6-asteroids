@@ -1,4 +1,4 @@
-import Game from '/javascript/Game.js'
+import Game from '/javascript/classes/Game.js'
 
 const game = new Game()
 

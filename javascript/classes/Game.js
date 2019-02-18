@@ -1,10 +1,10 @@
-import Canvas from '/javascript/Canvas.js'
+import Canvas from '/javascript/utility/Canvas.js'
 import flatten from '/node_modules/lodash-es/flatten.js'
 import identity from '/node_modules/lodash-es/identity.js'
 import { key } from '/javascript/globals.js'
-import Asteroid from '/javascript/Asteroid.js'
-import Ship from '/javascript/Ship.js'
-import Vec2 from '/javascript/Vec2.js'
+import Asteroid from '/javascript/classes/Asteroid.js'
+import Ship from '/javascript/classes/Ship.js'
+import Vec2 from '/javascript/utility/Vec2.js'
 
 const canvasBB = Canvas.getBoundingBox()
 const MIN_ASTEROIDS = 5;

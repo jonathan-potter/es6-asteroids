@@ -1,6 +1,6 @@
-import BoundingBox from '/javascript/BoundingBox.js'
-import Canvas from '/javascript/Canvas.js'
-import Vec2, { NullVector } from '/javascript/Vec2.js'
+import BoundingBox from '/javascript/utility/BoundingBox.js'
+import Canvas from '/javascript/utility/Canvas.js'
+import Vec2, { NullVector } from '/javascript/utility/Vec2.js'
 
 const { hypot } = Math
 export const DEFAULT_RADIUS = 20

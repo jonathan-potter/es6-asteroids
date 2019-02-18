@@ -1,7 +1,7 @@
-import Canvas from '/javascript/Canvas.js'
+import Canvas from '/javascript/utility/Canvas.js'
 import { key } from '/javascript/globals.js'
-import MovingObject from '/javascript/MovingObject.js'
-import Vec2, { NullVector } from '/javascript/Vec2.js'
+import MovingObject from '/javascript/classes/MovingObject.js'
+import Vec2, { NullVector } from '/javascript/utility/Vec2.js'
 
 const { cos, min, PI, sin } = Math
 
