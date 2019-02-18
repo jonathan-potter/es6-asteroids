@@ -1,5 +1,5 @@
 import BoundingBox from '/javascript/BoundingBox.js'
-import Vec2, { NullVector } from '/javascript/Vec2.js';
+import Vec2, { NullVector } from '/javascript/Vec2.js'
 
 const canvas = document.getElementById('canvas')
 const context = canvas.getContext('2d')

@@ -2,7 +2,7 @@ import Canvas from '/javascript/Canvas.js'
 import MovingObject, { DEFAULT_RADIUS } from '/javascript/MovingObject.js'
 import Vec2 from '/javascript/Vec2.js'
 
-const { cos, PI, random, sin } = Math
+const { PI, random } = Math
 
 const ASTEROID_GENERATIONS = 3
 const MAX_SPEED = 2

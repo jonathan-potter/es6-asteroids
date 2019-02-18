@@ -4,6 +4,7 @@
   "description": "asteroids game in javascript",
   "main": "javascript/index.js",
   "scripts": {
+    "lint": "npx eslint ./javascript/",
     "start": "python -m SimpleHTTPServer 1111"
   },
   "keywords": [
@@ -14,6 +15,8 @@
   "author": "Jonathan Potter",
   "license": "MIT",
   "dependencies": {
+    "eslint": "^5.14.1",
+    "eslint-plugin-babel": "^5.3.0",
     "keymaster": "^1.6.2",
     "lodash-es": "^4.17.11"
   }

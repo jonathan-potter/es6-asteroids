@@ -16,11 +16,11 @@ export default class MovingObject {
     }
 
     get x() {
-        return this.position.x;
+        return this.position.x
     }
 
     get y() {
-        return this.position.y;
+        return this.position.y
     }
 
     get acceleration() {
