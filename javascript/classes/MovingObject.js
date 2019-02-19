@@ -1,5 +1,4 @@
 import BoundingBox from '/javascript/utility/BoundingBox.js'
-import Canvas from '/javascript/utility/Canvas.js'
 import renderer from '/javascript/renderer.js'
 import Vec2, { NullVector } from '/javascript/utility/Vec2.js'
 

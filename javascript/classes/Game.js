@@ -8,7 +8,7 @@ import Ship from '/javascript/classes/Ship.js'
 import Vec2 from '/javascript/utility/Vec2.js'
 
 const canvasBB = Canvas.getBoundingBox()
-const MIN_ASTEROIDS = 5;
+const MIN_ASTEROIDS = 5
 
 export default class Game {
     asteroids = []
